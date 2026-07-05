@@ -20,7 +20,7 @@
     when: action == "create"
   - name: printing instanceid
     debug:
-      msg: {{ ec2_output }}
+      msg: "{{ ec2_output }}""
   #msg: "instance name: {{ item.item }} and instanceid: {{ item.instances[0].}}"
   #     loop: {{ ec2_output.results}}
     
