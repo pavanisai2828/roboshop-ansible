@@ -1,0 +1,24 @@
+- name: Mangement of EC2 instances for roboshop
+  hosts: local
+  connection: local
+  vars:
+    - instances: ["mongodb","mysql","redis","rabbitmg","payment","shipping","catalogue","cart","user"]
+    - image: ami-0220d79f3f480ecf5
+    - zone: daws-90.online
+    - action: create
+  tasks:
+  - name: launching EC2 instances
+    amazon.aws.ec2_instance:
+      name: "roboshop-{{ item }}"
+      security_groups:
+      - roboshop-{{ item }}
+      - roboshop-common
+      image_id: {{ image }}
+    loop: {{ instances }}
+    register: ec2_output
+    when: action == "create"
+  # - name: printing instanceid
+  #   debug:
+  #     msg: "instance name: {{ item.item }} and instanceid: {{ item.instances[0].}}"
+  #     loop: {{ ec2_output.results}}
+    
