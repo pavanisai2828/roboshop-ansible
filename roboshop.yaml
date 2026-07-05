@@ -1,4 +1,4 @@
-- name: Mangement of EC2 instances for roboshop
+- name: Mangement of EC2 servers for roboshop
   hosts: local
   connection: local
   vars:
