@@ -3,9 +3,9 @@
   connection: local
   vars:
     - instances: ["mongodb","mysql","redis","rabbitmg","payment","shipping","catalogue","cart","user"]
-    - image: ami-0220d79f3f480ecf5
-    - zone: daws-90.online
-    - action: create
+    - image: "ami-0220d79f3f480ecf5"
+    - zone: "daws-90.online"
+    - action: "create"
   tasks:
   - name: launching EC2 instances
     amazon.aws.ec2_instance:
