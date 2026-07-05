@@ -12,10 +12,10 @@
       instance_type: t3.micro
       name: "roboshop-{{ item }}"
       security_groups:
-      - roboshop-{{ item }}
+      - "roboshop-{{ item }}"
       - roboshop-common
       image_id: "{{ image }}"
-    loop: {{ instances }}
+    loop: "{{ instances }}"
     register: ec2_output
     when: action == "create"
   # - name: printing instanceid
