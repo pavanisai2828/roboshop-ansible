@@ -28,7 +28,7 @@
     amazon.aws.route53:
       state: present
       zone: "{{ zone_name }}"
-      ttt: 1
+      ttl: 1
       type: A
       record: "{{ item.item }}.{{ zone_name }}"
       value: "{{ item.instances[0].private_ip_address }}"
@@ -39,7 +39,7 @@
     amazon.aws.route53:
         state: present
         zone: "{{ zone_name }}"
-        ttt: 1
+        ttl: 1
         type: A
         record: "{{ item.item }}.{{ zone_name }}"
         value: "{{ item.instances[0].public_ip_address }}"
