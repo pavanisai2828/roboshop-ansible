@@ -2,7 +2,7 @@
   hosts: local
   connection: local
   vars:
-    instances: ["mongodb","mysql","redis","rabbitmg","payment","shipping","catalogue","cart","user"]
+    instances: ["mongodb","mysql","redis","rabbitmq","payment","shipping","catalogue","cart","user"]
     image: ami-0220d79f3f480ecf5
     zone: daws-90.online
     action: create
@@ -21,6 +21,6 @@
   - name: printing instanceid
     debug:
       msg: "{{ ec2_output }}"
-  #msg: "instance name: {{ item.item }} and instanceid: {{ item.instances[0].}}"
-  #     loop: {{ ec2_output.results}}
+      msg: "instance name: {{ item.item }} and instanceid: {{ item.instances[0].instance_id}}"
+      loop: "{{ ec2_output.results}}"
     
