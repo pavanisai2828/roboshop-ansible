@@ -51,17 +51,28 @@
     ansible.builtin.copy:
       src: mong.repo
       dest: /etc/yum.repos.d/mongo.repo
-      remote_src: yes
   - name: install mongodb client
     ansible.builtin.package:
       name: mongodb-mongosh
       state: present
-  - name: load master data (load products)
-    community.mongodb.mongodb_shell:
-      login_host: '{{ MONGODB_HOST }}'
-      file: '/app/db/master-data.js'
-      idempotent: yes
+  # - name: load master data (load products)
+  #   community.mongodb.mongodb_shell:
+  #     login_host: '{{ MONGODB_HOST }}'
+  #     file: '/app/db/master-data.js'
+  #     idempotent: yes
+  - name: check catalogue schema exists or not
+    ansible.builtin.shell: mongosh --host {{ MONGODB_HOST }} --eval 'db.getMongo().getDBNames().indexOf("catalogue")
+    register: catalogue_output
+  - name: print catalogue_output
+    debug:
+      msg: {{ catalogue_output }}
+
       
+  - name: load master data
+    ansible.builtin.shell: mongosh --host {{ MONGODB_HOST }} </app/db/master-data.js
+    
+
+
 
 
 
