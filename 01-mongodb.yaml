@@ -20,7 +20,7 @@
       path: /etc/mongod.conf
       regexp: '127.0.0.1'
       replace: '0.0.0.0'
-  - name: retart mongod services
+  - name: restart mongod services
     ansible.builtin.service:
       name: mongod
       state: restarted
