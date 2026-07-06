@@ -17,11 +17,12 @@
       enabled: yes
   - name:  create user for application
     community.rabbitmq.rabbitmq_user:
-      user: 
-      password:
+      user: roboshop
+      password: roboshop123
       permissions:
         - vhost: /
           configure_priv: .*
           read_priv: .*
           write_priv: .*
       state: present
+  
