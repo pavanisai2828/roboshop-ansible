@@ -60,16 +60,20 @@
   #     login_host: '{{ MONGODB_HOST }}'
   #     file: '/app/db/master-data.js'
   #     idempotent: yes
-  # - name: check catalogue schema exists or not
-  #   ansible.builtin.shell: mongosh --host {{ MONGODB_HOST }} --eval 'db.getMongo().getDBNames().indexOf("catalogue")
-  #   register: catalogue_output
-  # - name: print catalogue_output
-  #   debug:
-  #     msg: "{{ catalogue_output }}"
+  tags:
+  - mongodb
+  - name: check catalogue schema exists or not
+    ansible.builtin.shell: mongosh --host {{ MONGODB_HOST }} --eval 'db.getMongo().getDBNames().indexOf("catalogue")
+    register: catalogue_output
+  - name: print catalogue_output
+    debug:
+      msg: "{{ catalogue_output }}"
+  tags :
+  - mongodb
 
       
-  # - name: load master data
-  #   ansible.builtin.shell: mongosh --host {{ MONGODB_HOST }} </app/db/master-data.js
+  - name: load master data
+    ansible.builtin.shell: mongosh --host {{ MONGODB_HOST }} </app/db/master-data.js
     
 
 
