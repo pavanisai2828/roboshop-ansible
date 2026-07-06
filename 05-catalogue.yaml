@@ -55,6 +55,8 @@
     ansible.builtin.package:
       name: mongodb-mongosh
       state: present
+    tags:
+    - mongodb
   - name: check catalogue schema exists or not
     ansible.builtin.shell: mongosh --host "{{ MONGODB_HOST }}" --eval 'db.getMongo().getDBNames().indexOf("catalogue")'
     register: catalogue_output
@@ -65,6 +67,8 @@
   - name: load master data
     ansible.builtin.shell: mongosh --host {{ "MONGODB_HOST" }} </app/db/master-data.js
     when: catalogue_output.stdout | int < 0
+    tags:
+    - mongodb
 
 
 
