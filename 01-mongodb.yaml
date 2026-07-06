@@ -1,0 +1,9 @@
+- name: Configuring mongodb servers
+  hosts: mongodb
+  become: yes
+  tasks:
+  - name: copy mongodb repo
+    ansible.builtin.copy:
+    src: roboshop-ansible\mong.repo
+    dest: /etc/yum.repos.d/mongo.repo
+    
