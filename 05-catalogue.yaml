@@ -60,12 +60,15 @@
   - name: check catalogue schema exists or not
     ansible.builtin.shell: mongosh --host "{{ MONGODB_HOST }}" --eval 'db.getMongo().getDBNames().indexOf("catalogue")'
     register: catalogue_output
+    tags:
+    - mongodb
   - name: print catalogue_output
     debug:
       msg: "{{ catalogue_output }}"
-
+    tags:
+    - mongodb
   - name: load master data
-    ansible.builtin.shell: mongosh --host {{ "MONGODB_HOST" }} </app/db/master-data.js
+    ansible.builtin.shell: mongosh --host "{{ MONGODB_HOST }}" </app/db/master-data.js
     when: catalogue_output.stdout | int < 0
     tags:
     - mongodb
