@@ -38,15 +38,13 @@
       remote_src: yes
       dest: /app
   - name: download dependencies
-    ansible.builtin.command:
-      cmd: /tmp/shipping.zip
-      args:
-        chdir: /app
+    ansible.builtin.command: /tmp/shipping.zip
+    args:
+      chdir: /app
   - name: move shipping.jar
-    ansible.builtin.command:
-      cmd: mv target/shipping-1.0.jar shipping.jar
-      args:
-        chdir: /app
+    ansible.builtin.command: mv target/shipping-1.0.jar shipping.jar
+    args:
+      chdir: /app
   - name: set up shipping.service
     ansible.builtin.copy:
       src: shipping.service.j2
