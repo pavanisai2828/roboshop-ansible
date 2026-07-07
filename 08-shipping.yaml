@@ -61,9 +61,9 @@
       login_password: pRoboShop@1
       target: "{{ item }}"
     loop:
-      /app/db/schema.sql
-      /app/db/app-user.sql 
-      /app/db/master-data.sql
+    - /app/db/schema.sql
+    - /app/db/app-user.sql 
+    - /app/db/master-data.sql
   - name: enable and start shipping
     ansible.builtin.service:
       name: shipping
