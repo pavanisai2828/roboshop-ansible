@@ -38,7 +38,7 @@
       remote_src: yes
       dest: /app
   - name: download dependencies
-    ansible.builtin.command: /tmp/shipping.zip
+    ansible.builtin.command: mvn clean package
     args:
       chdir: /app
   - name: move shipping.jar
