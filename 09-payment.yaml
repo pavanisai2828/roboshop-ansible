@@ -48,6 +48,9 @@
     ansible.builtin.copy:
       src: payment.service.j2
       dest: /etc/systemd/system/payment.service
+  - name: deamon reload
+    ansible.builtin.systemd_service:
+      deamon_reload: True
   - name: enable and start shipping
     ansible.builtin.service:
       name: shipping
