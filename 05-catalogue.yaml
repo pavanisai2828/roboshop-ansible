@@ -72,10 +72,10 @@
     when: catalogue_output.stdout | int < 0
     tags:
     - mongodb
-  # - name: deamon reload
-  #   ansible.builtin.systemd_service:
-  #     name: catalogue
-  #     deamon_reload: True
+  - name: deamon reload
+    ansible.builtin.systemd_service:
+      name: catalogue
+      deamon_reload: True
   - name: enable and start catalogue
     ansible.builtin.service:
       name: catalogue
