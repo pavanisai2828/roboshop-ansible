@@ -1,0 +1,3 @@
+- name: configuration payment server
+  hosts: payment
+  

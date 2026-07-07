@@ -27,7 +27,7 @@
   - name: create directory
     ansible.builtin.file:
       path: /app
-      state: present
+      state: directory
   - name: download zip file
     ansible.builtin.get_url:
       url: https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip 
