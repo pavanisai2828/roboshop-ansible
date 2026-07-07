@@ -53,8 +53,6 @@
     pip:
       name: PyMySQL
       executable: pip3.9
-    tags:
-    - mysql
   - name: load mysql data
     community.mysql.mysql_db:
       state: import
@@ -67,10 +65,9 @@
     - /app/db/schema.sql
     - /app/db/app-user.sql 
     - /app/db/master-data.sql
-    tags:
-    - mysql
-    tags:
-    - mysql
+  - name: Reload systemd
+    ansible.builtin.systemd_service:
+      daemon_reload: true
   - name: enable and start shipping
     ansible.builtin.service:
       name: shipping
